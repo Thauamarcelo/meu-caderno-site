@@ -1,5 +1,5 @@
 import React, { useState } from 'react';        // ✅ useState importado do React
-import { useNavigate, Link } from 'react-router-dom';  // ✅ useNavigate e Link importados
+import { useNavigate } from 'react-router-dom';  // ✅ useNavigate e Link importados
 import axios from 'axios';                     // ✅ axios importado
 import './Login.css';                          // Reutiliza o CSS do Login
 
@@ -7,7 +7,7 @@ const Register = () => {
     // ==========================================
     // ESTADOS: A memória do componente
     // ==========================================
-    
+
     // Diferente do Login, aqui temos 3 campos (username, email, password)
     const [formData, setFormData] = useState({
         username: '',  // NOVO: Campo de nome de usuário
@@ -40,9 +40,12 @@ const Register = () => {
 
         try {
             // Envia os dados para a rota de REGISTRO (não login!)
-            const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/auth/registrar`, formData);
+            await axios.post(
+                'https://meu-caderno-site.onrender.com/api/auth/registrar',
+                formData
+            );
 
-            
+
             // Se chegou aqui, o registro deu certo!
             // Mostra mensagem de sucesso e redireciona para login
             alert('Conta criada com sucesso! Faça login para continuar.');
@@ -62,14 +65,14 @@ const Register = () => {
 
     //oq aparece na tela
     return (
-        <div className= "login-container">
-            <div classsName = "login-box">
-                <h1 className = "login-title">「 Criar Conta 」 </h1>
+        <div className="login-container">
+            <div classsName="login-box">
+                <h1 className="login-title">「 Criar Conta 」 </h1>
 
                 {/* mensgaem de erro*/}
                 {error && <div className="error-message">{error}</div>}
 
-                <form onSubmit = {handleSubmit} className = "login-form">
+                <form onSubmit={handleSubmit} className="login-form">
                     {/*CAMPO NOVO: nome de usuário */}
                     <div className="form-group">
                         <label htmlFor="username">Nome de Usuário</label>

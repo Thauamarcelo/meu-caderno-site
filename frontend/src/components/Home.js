@@ -40,9 +40,9 @@ const Home = () => {
               <details>
                 <summary>Interaja comigo</summary>
                 <ul className="submenu">
-                  <li><a href="#">dia a dia</a></li>
-                  <li><a href="#">curiosidades</a></li>
-                  <li><a href="#">DIGA-ME ALGO</a></li>
+                  <li><a href="#inicio">dia a dia</a></li>
+                  <li><a href="#inicio">curiosidades</a></li>
+                  <li><a href="#inicio">DIGA-ME ALGO</a></li>
                 </ul>
               </details>
             </li>
@@ -52,10 +52,10 @@ const Home = () => {
               <details>
                 <summary>Indicações</summary>
                 <ul className="submenu">
-                  <li><a href="#">Música/Albuns</a></li>
-                  <li><a href="#">Filme</a></li>
-                  <li><a href="#">Série</a></li>
-                  <li><a href="#">livro</a></li>
+                  <li><a href="#inicio">Música/Albuns</a></li>
+                  <li><a href="#inicio">Filme</a></li>
+                  <li><a href="#inicio">Série</a></li>
+                  <li><a href="#inicio">livro</a></li>
                 </ul>
               </details>
             </li>
@@ -65,9 +65,9 @@ const Home = () => {
               <details>
                 <summary>Projetos</summary>
                 <ul className="submenu">
-                  <li><a href="#">CodeMusic</a></li>
-                  <li><a href="#">Blender</a></li>
-                  <li><a href="#">SECREAT</a></li>
+                  <li><a href="#inicio">CodeMusic</a></li>
+                  <li><a href="#inicio">Blender</a></li>
+                  <li><a href="#inicio">SECREAT</a></li>
                 </ul>
               </details>
             </li>
@@ -167,7 +167,7 @@ const Home = () => {
 
       <footer>
         <nav>
-          <a href="#">Política de privacidade</a>
+          <a href="#inicio">Política de privacidade</a>
         </nav>
       </footer>
 
