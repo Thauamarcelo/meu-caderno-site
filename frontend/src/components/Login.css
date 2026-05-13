@@ -1,0 +1,100 @@
+.login-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    font-family: "Inconsolata", monospace;
+}
+
+.login-box {
+  background: rgb(255, 255, 255);
+  padding: 2rem;
+  border: 2px solid black;
+  width: 400px;
+  box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.2);
+}
+
+.login-title {
+  background-color: black;
+  color: rgb(255, 255, 255);
+  padding: 5px 15px;
+  display: inline-block;
+  font-size: 1.6rem;
+  margin-bottom: 2rem;
+  font-family: "Inconsolata", monospace;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.input-group label {
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.input-group input {
+  padding: 10px;
+  border: 1px solid black;
+  background: #fcfcfc;
+  font-family: "Inconsolata", monospace;
+  font-size: 1rem;
+}
+.input-group input:focus {
+  outline: none;
+  border-width: 2px;
+}
+
+.login-btn {
+  background-color: black;
+  color: rgb(255, 255, 255);
+  padding: 12px;
+  border: none;
+  cursor: pointer;
+  font-family: "Inconsolata", monospace;
+  font-size: 1rem;
+  border-style: dashed;
+  border-width: 2px;
+  border-color: rgb(255, 255, 255);
+}
+
+.login-btn:hover {
+  opacity: 0.9;
+}
+
+.login-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.error-message {
+  background: #ffebee;
+  color: #c62828;
+  padding: 10px;
+  border-left: 4px solid #c62828;
+  margin-bottom: 1rem;
+}
+
+.register-link {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.register-link a {
+  color: black;
+  font-weight: bold;
+}
+
+.register-link a:hover {
+  text-decoration: underline;
+}

@@ -1,0 +1,276 @@
+@charset "UTF-8";
+
+* {
+    /* height: 100%; */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    scroll-behavior: smooth;
+    --color-letter: #F2E7DC;
+    font-family: "Inconsolata", monospace;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    font-weight: 500;
+    font-style: normal;
+    color: inherit;
+    font-size: 16px;
+}
+
+:root {
+    /* depois ter que arrumar o fundo com duas imagens */
+    --bg-color: white;
+    --text-bg-color: black;
+    --text-color: black;
+}
+
+html {
+    font-size: 80%;
+    overflow-x: hidden;
+}
+
+body {
+  background-image: url('../../public/img/campo.png');
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  background-attachment: fixed;
+  background-size: 100% auto;
+}
+
+header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    padding: 1rem 5%;
+    backdrop-filter: blur(1px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 100px;
+    display: block;
+}
+
+nav {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.nav-list {
+    display: flex;
+    list-style: none;
+    gap: 50px;
+    padding: 0;
+    margin: 0;
+
+    /* position: absolute; */
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+}
+
+.dropdown {
+    position: relative;
+}
+
+.submenu {
+    position: absolute;
+    top: 100%;
+    left: 30%;
+    backdrop-filter: blur(1px);
+    list-style: none;
+    display: none;
+    min-width: 100%;
+}
+
+details[open] .submenu {
+    display: block;
+}
+
+.submenu li::marker {
+    content: "꩜ ";
+}
+
+summary {
+    list-style: none;
+    cursor: pointer;
+}
+
+summary::-webkit-details-marker {
+    display: none;
+}
+
+summary::before {
+    content: "▸";
+    display: inline-block;
+    margin-left: 6px;
+    font-size: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+details[open] summary::before {
+    transform: rotate(90deg);
+}
+
+main {
+    padding: 140px 5% 0 5%;
+
+}
+
+.music {
+    position: fixed;
+    right: 6%;
+    top: 160px;
+}
+
+.music iframe {
+    width: 100%;
+    height: 450px;
+    display: block;
+}
+
+.subclasse-box {
+    width: 500px;
+    padding: 1px 1px 1px 1px;
+}
+
+.subclasse-box p {
+    display: none;
+}
+
+.subclasse-box:hover p {
+    display: block;
+}
+
+.contact-btn {
+    background-color: black;
+    color: white;
+    padding: 10px;
+    display: inline-block;
+    font-size: 1rem;
+    border-style: dashed;
+}
+
+h1 {
+    background-color: black;
+    color: white;
+    padding: 5px;
+    display: inline-block;
+    font-size: 1.6rem;
+    /* chat */
+    overflow: hidden;
+    /* white-space: nowrap; */
+    border-right: 2px solid black;
+}
+
+.cursor-blink {
+    animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+    50% {
+        border-color: transparent;
+    }
+}
+
+/* .fade-text {
+  opacity: 0;
+  animation: fadeIn 1.5s ease forwards;
+} */
+
+/* @keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+} */
+/* chat */
+h3 {
+    padding: 7px;
+    display: inline-block;
+    font-size: 1.5rem;
+    opacity: 0;
+}
+
+p {
+    padding: 4px;
+}
+
+/* ul, li {
+  padding: 0;
+} */
+
+.content {
+    width: 100%;
+    padding: 0px 500px 0px 0px;
+}
+
+.resumo {
+    padding: 20px 0px 0px 0px;
+}
+
+.resumo-lista {
+    list-style: none;
+    padding: 0;
+}
+
+.resumo-lista li {
+    margin-bottom: 10px;
+    padding-left: 20px;
+    position: relative;
+
+}
+
+.resumo-lista li::before {
+    content: "꩜";
+    position: auto;
+    left: 0;
+}
+
+/* PAG MUSICA/ALBUM */
+
+.musica {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+
+}
+
+.card {
+    width: 250px;
+    cursor: pointer;
+    position: relative;
+}
+
+.card img {
+    width: 100%;
+    display: block;
+    transform: scale(1);
+}
+
+.info {
+    display: none;
+    margin-top: 10px;
+    width: 280px;
+    max-height: 200px;
+    overflow-y: auto;
+    background: rgba(61, 61, 61, 0.315);
+    padding: 20px;
+}
+
+.card.active .info {
+    display: block;
+}
