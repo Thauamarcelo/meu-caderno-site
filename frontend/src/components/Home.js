@@ -30,7 +30,7 @@ const Home = () => {
 
       <header>
         <a href="#inicio" className="logo">
-          <img src="/img/roma_fruta.png" />
+          <img src="/img/roma_fruta.png" alt="Logo do site"/>
         </a>
 
         <nav className="navbar">
