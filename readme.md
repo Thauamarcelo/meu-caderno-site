@@ -9,6 +9,12 @@
 
 Site pessoal "All About TiD" com sistema de **autenticação completa** (registro e login). Após fazer login, o usuário acessa uma página personalizada com conteúdo sobre música, projetos e pensamentos.
 
+
+## 💻 Acesso ao projeto
+
+Para ter acesso ao projeto, você pode acessar por esse link: https://meu-caderno-site-g67q-4y4ced84x-thaua-tid.vercel.app/login
+
+
 ## 🎯 Funcionalidades
 
 - ✅ Cadastro de novos usuários
