@@ -6,7 +6,8 @@ import './Music.css';
 const Music = () => {
     const navigate = useNavigate();
 
-    // Proteção: verifica se está logado
+    const [activeCard, setActiveCard] = React.useState(null);
+
     useEffect(() => {
         const token = localStorage.getItem('token');
         if (!token) {
@@ -22,9 +23,6 @@ const Music = () => {
 
     return (
         <>
-            {/* ========================================== */}
-            {/* HEADER - Igual ao da Home                  */}
-            {/* ========================================== */}
             <header>
                 <Link to="/home" className="logo">
                     <img src="/img/roma_fruta.png" alt="roman-fruta" />
@@ -73,13 +71,12 @@ const Music = () => {
                 </button>
             </header>
 
-            {/* ========================================== */}
-            {/* CONTEÚDO PRINCIPAL - Página de Música     */}
-            {/* ========================================== */}
+
             <main>
                 <section className="musica">
                     {/* Card 1: Addison */}
-                    <div className="card">
+                    <div className={`card ${activeCard === 0 ? 'active' : ''}`}
+                        onClick={() => setActiveCard(activeCard === 0 ? null : 0)}>
                         <img src="/img/addison.png" alt="cd-addison" />
                         <h1>ADDISON</h1>
                         <div className="info">
@@ -121,7 +118,8 @@ const Music = () => {
                     </div>
 
                     {/* Card 2: Virgin */}
-                    <div className="card">
+                    <div className={`card ${activeCard === 1 ? 'active' : ''}`}
+                        onClick={() => setActiveCard(activeCard === 1 ? null : 1)}>
                         <img src="/img/virgin.png" alt="virgin" />
                         <h1>VIRGIN</h1>
                         <div className="info">
