@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import './Home.css';  // Reutiliza o mesmo CSS da Home
+import './Home.css'; 
+import './Music.css'; 
 
 const Music = () => {
     const navigate = useNavigate();

@@ -1,0 +1,32 @@
+.musica {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding-top: 20px;
+}
+
+.card {
+    width: 250px;
+    cursor: pointer;
+    position: relative;
+}
+
+.card img {
+    width:250px;
+    display: block;
+    transform: scale(1);
+}
+
+.info {
+  display: none;
+  margin-top: 10px;
+  width: 280px;
+  max-height: 200px;
+  overflow-y: auto;
+  background: rgba(61, 61, 61, 0.315);
+  padding: 20px;
+}
+
+.card.active .info {
+  display: block;
+}
