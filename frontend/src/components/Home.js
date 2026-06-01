@@ -52,7 +52,7 @@ const Home = () => {
               <details>
                 <summary>Indicações</summary>
                 <ul className="submenu">
-                  <li><a href="#inicio">Música/Albuns</a></li>
+                  <li><Link to="/music">Música/Albuns</Link></li>
                   <li><a href="#inicio">Filme</a></li>
                   <li><a href="#inicio">Série</a></li>
                   <li><a href="#inicio">livro</a></li>
