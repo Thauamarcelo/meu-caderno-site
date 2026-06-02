@@ -30,16 +30,18 @@ const Music = () => {
                 
                 <nav className="navbar">
                     <ul className="nav-list">
-                        <li className="dropdown">
+                        {/* menu dropdown 1 */}
+                        {/*<li className="dropdown">
                             <details>
                                 <summary>Interaja comigo</summary>
                                 <ul className="submenu">
-                                    <li><button className="link-button">dia dia</button></li>
-                                    <li><button className="link-button">curiosidades</button></li>
-                                    <li><button className="link-button">DIGA-ME ALGO</button></li>
+                                    <li><a href="#inicio">dia a dia</a></li>
+                                    <li><a href="#inicio">curiosidades</a></li>
+                                    <li><a href="#inicio">DIGA-ME ALGO</a></li>
                                 </ul>
                             </details>
-                        </li>
+                        </li></>*/}
+
 
                         <li className="dropdown">
                             <details>

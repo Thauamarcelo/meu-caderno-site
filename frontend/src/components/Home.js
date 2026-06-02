@@ -36,7 +36,7 @@ const Home = () => {
         <nav className="navbar">
           <ul className="nav-list">
             {/* menu dropdown 1 */}
-            <li className="dropdown">
+            {/*<li className="dropdown">
               <details>
                 <summary>Interaja comigo</summary>
                 <ul className="submenu">
@@ -45,7 +45,7 @@ const Home = () => {
                   <li><a href="#inicio">DIGA-ME ALGO</a></li>
                 </ul>
               </details>
-            </li>
+            </li></>*/}
 
             {/* Menu Dropdown 2 */}
             <li className="dropdown">
@@ -53,7 +53,7 @@ const Home = () => {
                 <summary>Indicações</summary>
                 <ul className="submenu">
                   <li><Link to="/music">Música/Albuns</Link></li>
-                  <li><a href="#inicio">Filme</a></li>
+                  <li><Link to="/filme">Filme</Link></li>
                   <li><a href="#inicio">Série</a></li>
                   <li><a href="#inicio">livro</a></li>
                 </ul>
