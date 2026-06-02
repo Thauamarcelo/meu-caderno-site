@@ -4,6 +4,7 @@
 ![React](https://img.shields.io/badge/React-18-blue)
 ![Node.js](https://img.shields.io/badge/Node.js-20-green)
 ![MongoDB](https://img.shields.io/badge/MongoDB-Atlas-brightgreen)
+![Vercel](https://img.shields.io/badge/MongoDB-Atlas-brightgreen)
 
 ## 📋 Sobre o Projeto
 
