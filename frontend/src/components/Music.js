@@ -131,7 +131,7 @@ const Music = () => {
 
                     <div className={`card ${activeCard === 2 ? 'active' : ''}`}
                         onClick={() => setActiveCard(activeCard === 2 ? null : 2)}>
-                        <img src="/img/magdalene.png.png" alt="magdalene" />
+                        <img src="/img/magdalene.png" alt="magdalene" />
                         <h1>MAGDALENE</h1>
                         <div className="info">
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero minima accusantium expedita animi
