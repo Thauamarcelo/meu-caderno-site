@@ -31,11 +31,10 @@ const Movies = () => {
                 
                 // Lista de filmes que você quer mostrar
                 const movieTitles = [
-                    'Matrix',
-                    'Inception',
-                    'Interstellar',
-                    'The Dark Knight',
-                    'Pulp Fiction'
+                    'All About Lily Chou-Chou',
+                    'The Second Mother',
+                    'Perfect Blue',
+                    'everything everywhere all at once'
                 ];
                 
                 // Busca cada filme individualmente
