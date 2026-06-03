@@ -46,9 +46,9 @@ const Filme = () => {
                                 <summary>Indicações</summary>
                                 <ul className="submenu">
                                     <li><Link to="/music">Música/Albuns</Link></li>
-                                    <li><button className="link-button">Filme</button></li>
-                                    <li><button className="link-button">Série</button></li>
-                                    <li><button className="link-button">livro</button></li>
+                                    <li><Link to="/filme">Filme</Link></li>
+                                    <li><a href="#inicio">Série</a></li>
+                                    <li><a href="#inicio">livro</a></li>
                                 </ul>
                             </details>
                         </li>
@@ -57,9 +57,9 @@ const Filme = () => {
                             <details>
                                 <summary>Projetos</summary>
                                 <ul className="submenu">
-                                    <li><button className="link-button">CodeMusic</button></li>
-                                    <li><button className="link-button">Blender</button></li>
-                                    <li><button className="link-button">SECREAT</button></li>
+                                    <li><a href="#inicio">CodeMusic</a></li>
+                                    <li><a href="#inicio">Blender</a></li>
+                                    <li><a href="#inicio">SECREAT</a></li>
                                 </ul>
                             </details>
                         </li>
@@ -69,7 +69,18 @@ const Filme = () => {
                 <button onClick={handleLogout} className="contact-btn">
                     Sair
                 </button>
+
             </header>
+            
+            <main>
+
+                <section className="filme">
+                    <h1>Filmes</h1>
+                    <p>Lista de filmes indicados.</p>
+                </section>
+            </main>
         </>
-    )
-}
+    );
+};
+
+export default Filme;
