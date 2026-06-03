@@ -53,7 +53,7 @@ const Home = () => {
                 <summary>Indicações</summary>
                 <ul className="submenu">
                   <li><Link to="/music">Música/Albuns</Link></li>
-                  <li><Link to="/filme">Filme</Link></li>
+                  <li><Link to="/movies">Filme</Link></li>
                   <li><a href="#inicio">Série</a></li>
                   <li><a href="#inicio">livro</a></li>
                 </ul>
