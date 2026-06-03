@@ -48,7 +48,7 @@ const Music = () => {
                                 <summary>Indicações</summary>
                                 <ul className="submenu">
                                     <li><Link to="/music">Música/Albuns</Link></li>
-                                    <li><button className="link-button">Filme</button></li>
+                                    <li><Link to="/filme">Filme</Link></li>
                                     <li><button className="link-button">Série</button></li>
                                     <li><button className="link-button">livro</button></li>
                                 </ul>
