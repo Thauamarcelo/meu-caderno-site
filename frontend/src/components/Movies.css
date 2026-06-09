@@ -69,20 +69,20 @@
 
 .movie-rating {
     font-size: 0.9rem;
-    color: #666;
+    color: #000000;
 }
 
 /* Seta indicadora */
 .movie-arrow {
     font-size: 1.5rem;
-    color: #999;
+    color: #000000;
     transition: transform 0.3s;
 }
 
 /* Conteúdo expansível */
 .movie-content {
     padding: 0 20px 20px 20px;
-    border-top: 1px dashed #ccc;
+    border-top: 1px dashed #000000;
     animation: slideDown 0.3s ease;
 }
 
@@ -102,7 +102,7 @@
     margin: 15px 0;
 }
 
-.movie-review h3 {
+.movie-review h2 {
     font-size: 1.1rem;
     margin-bottom: 10px;
     font-family: "Inconsolata", monospace;
@@ -185,4 +185,16 @@
 
 .movie-details strong {
     font-weight: bold;
+}
+
+
+.my-review {
+    background: rgba(0, 0, 0, 0.03);
+    padding: 15px;
+    border-left: 3px solid #000000;
+    margin-top: 10px;
+}
+
+.my-review h2 {
+    color: #000000;
 }

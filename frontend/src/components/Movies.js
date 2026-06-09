@@ -23,12 +23,33 @@ const Movies = () => {
         }
     }, [navigate]);
 
+    // Lista com dados pessoais (na mesma ordem dos filmes buscados)
+const myMoviesData = [
+    {
+        searchTitle: 'All About Lily Chou-Chou',
+        myReview: 'Um filme delicado e poético que captura a essência da adolescência, com uma trilha sonora hipnotizante e uma narrativa que mistura realidade e fantasia de forma única.'
+    },
+    {
+        searchTitle: 'The Second Mother',
+        myReview: 'Um drama brasileiro poderoso que aborda as complexidades das relações familiares e sociais, com atuações emocionantes e uma direção sensível.'
+    },
+    {
+        searchTitle: 'Perfect Blue',
+        myReview: 'Um thriller psicológico intenso e perturbador que explora a identidade e a fama, com uma animação impressionante e uma narrativa cheia de reviravoltas.'
+    },
+    {
+        searchTitle: 'everything everywhere all at once',
+        myReview: 'Uma aventura multiversal criativa e emocionante que mistura ação, comédia e drama, com performances incríveis e uma história que celebra a diversidade e a conexão humana.'
+    }
+];
+
+
     // Buscar filmes da API OMDB ao carregar a página
     useEffect(() => {
         const fetchMovies = async () => {
             try {
                 setLoading(true);
-                
+
                 // Lista de filmes que você quer mostrar
                 const movieTitles = [
                     'All About Lily Chou-Chou',
@@ -36,23 +57,30 @@ const Movies = () => {
                     'Perfect Blue',
                     'everything everywhere all at once'
                 ];
-                
+
                 // Busca cada filme individualmente
                 const moviePromises = movieTitles.map(title =>
                     axios.get(`https://www.omdbapi.com/?t=${title}&apikey=${process.env.REACT_APP_OMDB_API_KEY}`)
                 );
-                
+
                 const responses = await Promise.all(moviePromises);
                 const movieData = responses.map(response => response.data);
-                
+
                 setMovies(movieData);
+
+                const moviesWithReviews = movieData.map((movie, index) => ({
+                    ...movie,  // Mantém todos os dados da API
+                     myReview: myMoviesData[index]?.myReview || 'Opinião em breve...'// Adicionar minha opinião
+                }));
+
+                setMovies(moviesWithReviews);
                 setLoading(false);
             } catch (err) {
                 setError('Erro ao carregar filmes');
                 setLoading(false);
             }
         };
-        
+
         fetchMovies();
     }, []);
 
@@ -198,13 +226,13 @@ const Movies = () => {
                         {movies.map((movie, index) => (
                             <div key={movie.imdbID} className="movie-item">
                                 {/* Cabeçalho clicável (pôster + nome) */}
-                                <div 
+                                <div
                                     className={`movie-header ${activeMovie === index ? 'active' : ''}`}
                                     onClick={() => toggleMovie(index)}
                                 >
-                                    <img 
-                                        src={movie.Poster !== 'N/A' ? movie.Poster : '/img/placeholder.jpg'} 
-                                        alt={movie.Title} 
+                                    <img
+                                        src={movie.Poster !== 'N/A' ? movie.Poster : '/img/placeholder.jpg'}
+                                        alt={movie.Title}
                                         className="movie-poster"
                                     />
                                     <div className="movie-name">
@@ -224,12 +252,17 @@ const Movies = () => {
                                             <h3>Sinopse</h3>
                                             <p>{movie.Plot}</p>
                                         </div>
-                                        
+
                                         <div className="movie-details">
                                             <p><strong>Diretor:</strong> {movie.Director}</p>
                                             <p><strong>Elenco:</strong> {movie.Actors}</p>
                                             <p><strong>Duração:</strong> {movie.Runtime}</p>
                                             <p><strong>Prêmios:</strong> {movie.Awards}</p>
+                                        </div>
+
+                                        <div className="movie-review my-review">
+                                            <h2>O que eu achei:</h2>
+                                            <p>{movie.myReview}</p>
                                         </div>
                                     </div>
                                 )}
