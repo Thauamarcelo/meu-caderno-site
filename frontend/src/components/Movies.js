@@ -82,7 +82,7 @@ const myMoviesData = [
         };
 
         fetchMovies();
-    }, []);
+    }, [myMoviesData]);
 
     const handleLogout = () => {
         localStorage.removeItem('token');
