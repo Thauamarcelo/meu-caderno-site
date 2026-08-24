@@ -13,7 +13,7 @@ Site pessoal "All About TiD" com sistema de **autenticação completa** (registr
 
 ## 💻 Acesso ao projeto
 
-Para ter acesso ao projeto, você pode acessar por esse link: https://meu-caderno-site-g67q-4y4ced84x-thaua-tid.vercel.app/login
+Para ter acesso ao projeto, você pode acessar por esse link: [https://meu-caderno-site-g67q-4y4ced84x-thaua-tid.vercel.app/login](https://meu-caderno-site-rlkwmt94v-thaua-tid.vercel.app/login)
 
 
 ## 🎯 Funcionalidades
