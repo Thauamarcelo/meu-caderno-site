@@ -98,3 +98,17 @@
 .register-link a:hover {
   text-decoration: underline;
 }
+
+/* Mensagens de validação (verde/vermelho) */
+.validation-message {
+    font-size: 0.8rem;
+    margin-top: 4px;
+}
+
+.validation-message.valid {
+    color: #2e7d32;  /* Verde */
+}
+
+.validation-message.invalid {
+    color: #c62828;  /* Vermelho */
+}

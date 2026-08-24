@@ -1,6 +1,6 @@
-import React, { useState } from 'react';        // ✅ useState importado do React
-import { useNavigate } from 'react-router-dom';  // ✅ useNavigate e Link importados
-import axios from 'axios';                     // ✅ axios importado
+import React, { useState } from 'react';        // useState importado do React
+import { useNavigate } from 'react-router-dom';  // useNavigate e Link importados
+import axios from 'axios';                     // axios importado
 import './Login.css';                          // Reutiliza o CSS do Login
 
 const Register = () => {
@@ -8,7 +8,7 @@ const Register = () => {
     // ESTADOS: A memória do componente
     // ==========================================
 
-    // Diferente do Login, aqui temos 3 campos (username, email, password)
+    // Diferente do Login, aqui você tem 3 campos (username, email, password)
     const [formData, setFormData] = useState({
         username: '',  // NOVO: Campo de nome de usuário
         email: '',
@@ -18,6 +18,28 @@ const Register = () => {
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
+
+    // FUNÇÃO: Verificar se o email tem formato válido
+
+    const isValidEmail = (email) => {
+        //regex simples: algo@algo.com
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    };
+
+    //FUNÇÃO: Verificar se a senha tem pelo menos 6 caracteres
+    const isValidPassword = (password) => {
+        return password.length >= 6;
+    };
+
+    //DERVIDADOS: Verificação em tempo real (opcional)
+    const passwordValid = isValidPassword(formData.password);
+    const emailValid = isValidEmail(formData.email);
+    const passwordMatch = formData.password === formData.confirmPassword; // Se houver campo de confirmação
+
+    //se tudo estiver válido, habilita o botão de registro
+    const formIsValid = passwordValid && emailValid && passwordMatch && formData.username.length >= 3;
+
 
     // ==========================================
     // FUNÇÃO: Lidar com mudanças nos campos
@@ -35,6 +57,21 @@ const Register = () => {
     // ==========================================
     const handleSubmit = async (e) => {
         e.preventDefault();  // Impede recarregar a página
+
+        // Validações antes de enviar
+        if (!emailValid) {
+            setError('Email inválido');
+            return;
+        }
+        if (!passwordValid) {
+            setError('Senha deve ter pelo menos 6 caracteres');
+            return;
+        }
+        if (!passwordMatch) {
+            setError('Senhas não coincidem');
+            return;
+        }
+
         setLoading(true);
         setError('');
 
@@ -85,6 +122,14 @@ const Register = () => {
                             required
                             placeholder="seu_nome"
                         />
+                        {/*VALIDAÇÃO EM TEMPO REAL*/}
+
+                        {/* Validação em tempo real */}
+                        <span className={`validation-message ${formData.username.length >= 3 ? 'valid' : 'invalid'}`}>
+                            {formData.username.length >= 3
+                                ? '✅ Nome válido'
+                                : '❌ Mínimo 3 caracteres'}
+                        </span>
                     </div>
 
                     <div className="form-group">
@@ -98,6 +143,12 @@ const Register = () => {
                             required
                             placeholder="seu@email.com"
                         />
+                        {/* Validação em tempo real */}
+                        <span className={`validation-message ${emailValid ? 'valid' : 'invalid'}`}>
+                            {emailValid
+                                ? '✅ Email válido'
+                                : '❌ Digite um email válido (ex: nome@dominio.com)'}
+                        </span>
                     </div>
 
                     <div className="form-group">
@@ -111,9 +162,41 @@ const Register = () => {
                             required
                             placeholder="**********"
                         />
+                        {/* Validação em tempo real */}
+                        <span className={`validation-message ${passwordValid ? 'valid' : 'invalid'}`}>
+                            {passwordValid
+                                ? '✅ Senha válida'
+                                : '❌ Mínimo 6 caracteres'}
+                        </span>
                     </div>
 
-                    <button type="submit" disabled={loading} className="login-btn">
+                    {/* ========================================== */}
+                    {/* CAMPO: Confirmar Senha                   */}
+                    {/* ========================================== */}
+                    <div className="input-group">
+                        <label htmlFor="confirmPassword">Confirmar senha</label>
+                        <input
+                            type="password"
+                            id="confirmPassword"
+                            name="confirmPassword"
+                            value={formData.confirmPassword}
+                            onChange={handleChange}
+                            required
+                            placeholder="**********"
+                        />
+                        {/* Validação em tempo real */}
+                        <span className={`validation-message ${passwordsMatch ? 'valid' : 'invalid'}`}>
+                            {passwordsMatch
+                                ? '✅ Senhas coincidem'
+                                : '❌ As senhas não coincidem'}
+                        </span>
+                    </div>
+
+                    <button
+                        type="submit"
+                        disabled={loading || !formIsValid}  // Desabilita se formulário inválido
+                        className="login-btn"
+                    >
                         {loading ? 'Criando conta...' : 'Criar Conta'}
                     </button>
                 </form>
