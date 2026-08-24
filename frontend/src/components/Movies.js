@@ -24,24 +24,24 @@ const Movies = () => {
     }, [navigate]);
 
     // Lista com dados pessoais (na mesma ordem dos filmes buscados)
-const myMoviesData = [
-    {
-        searchTitle: 'All About Lily Chou-Chou',
-        myReview: 'Um filme delicado e poético que captura a essência da adolescência, com uma trilha sonora hipnotizante e uma narrativa que mistura realidade e fantasia de forma única.'
-    },
-    {
-        searchTitle: 'The Second Mother',
-        myReview: 'Um drama brasileiro poderoso que aborda as complexidades das relações familiares e sociais, com atuações emocionantes e uma direção sensível.'
-    },
-    {
-        searchTitle: 'Perfect Blue',
-        myReview: 'Um thriller psicológico intenso e perturbador que explora a identidade e a fama, com uma animação impressionante e uma narrativa cheia de reviravoltas.'
-    },
-    {
-        searchTitle: 'everything everywhere all at once',
-        myReview: 'Uma aventura multiversal criativa e emocionante que mistura ação, comédia e drama, com performances incríveis e uma história que celebra a diversidade e a conexão humana.'
-    }
-];
+    const myMoviesData = [
+        {
+            searchTitle: 'All About Lily Chou-Chou',
+            myReview: 'Um filme delicado e poético que captura a essência da adolescência, com uma trilha sonora hipnotizante e uma narrativa que mistura realidade e fantasia de forma única.'
+        },
+        {
+            searchTitle: 'The Second Mother',
+            myReview: 'Um drama brasileiro poderoso que aborda as complexidades das relações familiares e sociais, com atuações emocionantes e uma direção sensível.'
+        },
+        {
+            searchTitle: 'Perfect Blue',
+            myReview: 'Um thriller psicológico intenso e perturbador que explora a identidade e a fama, com uma animação impressionante e uma narrativa cheia de reviravoltas.'
+        },
+        {
+            searchTitle: 'everything everywhere all at once',
+            myReview: 'Uma aventura multiversal criativa e emocionante que mistura ação, comédia e drama, com performances incríveis e uma história que celebra a diversidade e a conexão humana.'
+        }
+    ];
 
 
     // Buscar filmes da API OMDB ao carregar a página
@@ -50,27 +50,19 @@ const myMoviesData = [
             try {
                 setLoading(true);
 
-                // Lista de filmes que você quer mostrar
-                const movieTitles = [
-                    'All About Lily Chou-Chou',
-                    'The Second Mother',
-                    'Perfect Blue',
-                    'everything everywhere all at once'
-                ];
+                // 1. Dados pessoais (aqui dentro)
+                const myMoviesData = [... ];
 
-                // Busca cada filme individualmente
-                const moviePromises = movieTitles.map(title =>
-                    axios.get(`https://www.omdbapi.com/?t=${title}&apikey=${process.env.REACT_APP_OMDB_API_KEY}`)
-                );
-
+                // 2. Buscar filmes
+                const movieTitles = [... ];
+                const moviePromises = movieTitles.map(...);
                 const responses = await Promise.all(moviePromises);
-                const movieData = responses.map(response => response.data);
+                const movieData = responses.map(...);
 
-                setMovies(movieData);
-
+                // 3. Juntar com opiniões
                 const moviesWithReviews = movieData.map((movie, index) => ({
-                    ...movie,  // Mantém todos os dados da API
-                     myReview: myMoviesData[index]?.myReview || 'Opinião em breve...'// Adicionar minha opinião
+                    ...movie,
+                    myReview: myMoviesData[index]?.myReview || 'Opinião em breve...'
                 }));
 
                 setMovies(moviesWithReviews);
@@ -82,8 +74,7 @@ const myMoviesData = [
         };
 
         fetchMovies();
-    }, [myMoviesData]);
-
+    }, []);  // Vazio OK agora!
     const handleLogout = () => {
         localStorage.removeItem('token');
         localStorage.removeItem('user');
