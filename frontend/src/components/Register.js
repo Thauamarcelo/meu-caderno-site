@@ -12,7 +12,8 @@ const Register = () => {
     const [formData, setFormData] = useState({
         username: '',  // NOVO: Campo de nome de usuário
         email: '',
-        password: ''
+        password: '',
+        confirmPassword: '' 
     });
 
     const [error, setError] = useState('');
@@ -35,7 +36,7 @@ const Register = () => {
     //DERVIDADOS: Verificação em tempo real (opcional)
     const passwordValid = isValidPassword(formData.password);
     const emailValid = isValidEmail(formData.email);
-    const passwordMatch = formData.password === formData.confirmPassword; // Se houver campo de confirmação
+    const passwordsMatch = formData.password === formData.confirmPassword; // Se houver campo de confirmação
 
     //se tudo estiver válido, habilita o botão de registro
     const formIsValid = passwordValid && emailValid && passwordMatch && formData.username.length >= 3;
