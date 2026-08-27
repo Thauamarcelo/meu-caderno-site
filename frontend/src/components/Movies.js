@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
+import Header from './Header';
 import './Home.css';
 import './Movies.css';
 
@@ -82,12 +83,6 @@ const Movies = () => {
         fetchMovies();
     }, []);
 
-    const handleLogout = () => {
-        localStorage.removeItem('token');
-        localStorage.removeItem('user');
-        navigate('/login');
-    };
-
     // Abrir/fechar detalhes do filme
     const toggleMovie = (index) => {
         if (activeMovie === index) {
@@ -101,37 +96,7 @@ const Movies = () => {
     if (loading) {
         return (
             <>
-                <header>
-                    <Link to="/home" className="logo">
-                        <img src="/img/roma_fruta.png" alt="roman-fruta" />
-                    </Link>
-                    <nav className="navbar">
-                        <ul className="nav-list">
-                            <li className="dropdown">
-                                <details>
-                                    <summary>Indicações</summary>
-                                    <ul className="submenu">
-                                        <li><Link to="/music">Música/Albuns</Link></li>
-                                        <li><Link to="/movies">Filme</Link></li>
-                                        <li><button className="link-button">Série</button></li>
-                                        <li><button className="link-button">livro</button></li>
-                                    </ul>
-                                </details>
-                            </li>
-                            <li className="dropdown">
-                                <details>
-                                    <summary>Projetos</summary>
-                                    <ul className="submenu">
-                                        <li><button className="link-button">CodeMusic</button></li>
-                                        <li><button className="link-button">Blender</button></li>
-                                        <li><button className="link-button">SECREAT</button></li>
-                                    </ul>
-                                </details>
-                            </li>
-                        </ul>
-                    </nav>
-                    <button onClick={handleLogout} className="contact-btn">Sair</button>
-                </header>
+                <Header/>
                 <main>
                     <section className="movies-section">
                         <h1 className="movies-title">「 Filmes 」</h1>
@@ -146,27 +111,7 @@ const Movies = () => {
     if (error) {
         return (
             <>
-                <header>
-                    <Link to="/home" className="logo">
-                        <img src="/img/roma_fruta.png" alt="roman-fruta" />
-                    </Link>
-                    <nav className="navbar">
-                        <ul className="nav-list">
-                            <li className="dropdown">
-                                <details>
-                                    <summary>Indicações</summary>
-                                    <ul className="submenu">
-                                        <li><Link to="/music">Música/Albuns</Link></li>
-                                        <li><Link to="/movies">Filme</Link></li>
-                                        <li><button className="link-button">Série</button></li>
-                                        <li><button className="link-button">livro</button></li>
-                                    </ul>
-                                </details>
-                            </li>
-                        </ul>
-                    </nav>
-                    <button onClick={handleLogout} className="contact-btn">Sair</button>
-                </header>
+                <Header/>
                 <main>
                     <section className="movies-section">
                         <h1 className="movies-title">「 Filmes 」</h1>
@@ -180,40 +125,7 @@ const Movies = () => {
     return (
         <>
             {/* HEADER */}
-            <header>
-                <Link to="/home" className="logo">
-                    <img src="/img/roma_fruta.png" alt="roman-fruta" />
-                </Link>
-
-                <nav className="navbar">
-                    <ul className="nav-list">
-                        <li className="dropdown">
-                            <details>
-                                <summary>Indicações</summary>
-                                <ul className="submenu">
-                                    <li><Link to="/music">Música/Albuns</Link></li>
-                                    <li><Link to="/movies">Filme</Link></li>
-                                    <li><button className="link-button">Série</button></li>
-                                    <li><button className="link-button">livro</button></li>
-                                </ul>
-                            </details>
-                        </li>
-
-                        <li className="dropdown">
-                            <details>
-                                <summary>Projetos</summary>
-                                <ul className="submenu">
-                                    <li><button className="link-button">CodeMusic</button></li>
-                                    <li><button className="link-button">Blender</button></li>
-                                    <li><button className="link-button">SECREAT</button></li>
-                                </ul>
-                            </details>
-                        </li>
-                    </ul>
-                </nav>
-
-                <button onClick={handleLogout} className="contact-btn">Sair</button>
-            </header>
+            <Header/>
 
             {/* CONTEÚDO PRINCIPAL */}
             <main>

@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { useNavigate, Link } from 'react-router-dom';
 import './Home.css';
+import Header from './Header';
+import Footer from './Footer';
 
 const Home = () => {
 
@@ -16,70 +18,10 @@ const Home = () => {
     }
   }, [navigate]);
 
-  //função  delogout, limpa o localStorage e redireciona para login
-
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    navigate('/login');
-  };
-
   return (
     <>
       {/* HEADER - Convertido do meu antigo HTML           */}
-
-      <header>
-        <a href="#inicio" className="logo">
-          <img src="/img/roma_fruta.png" alt="Logo do site"/>
-        </a>
-
-        <nav className="navbar">
-          <ul className="nav-list">
-            {/* menu dropdown 1 */}
-            {/*<li className="dropdown">
-              <details>
-                <summary>Interaja comigo</summary>
-                <ul className="submenu">
-                  <li><a href="#inicio">dia a dia</a></li>
-                  <li><a href="#inicio">curiosidades</a></li>
-                  <li><a href="#inicio">DIGA-ME ALGO</a></li>
-                </ul>
-              </details>
-            </li></>*/}
-
-            {/* Menu Dropdown 2 */}
-            <li className="dropdown">
-              <details>
-                <summary>Indicações</summary>
-                <ul className="submenu">
-                  <li><Link to="/music">Música/Albuns</Link></li>
-                  <li><Link to="/movies">Filme</Link></li>
-                  <li><a href="#inicio">Série</a></li>
-                  <li><a href="#inicio">livro</a></li>
-                </ul>
-              </details>
-            </li>
-
-            {/* Menu Dropdown 3 */}
-            <li className="dropdown">
-              <details>
-                <summary>Projetos</summary>
-                <ul className="submenu">
-                  <li><a href="#inicio">CodeMusic</a></li>
-                  <li><a href="#inicio">Blender</a></li>
-                  <li><a href="#inicio">SECREAT</a></li>
-                </ul>
-              </details>
-            </li>
-          </ul>
-        </nav>
-
-        {/*substitui o contact me para logout */}
-        <button onClick={handleLogout} className="contact-btn">
-          Sair ({user.username})
-        </button>
-      </header>
-
+      <Header/>
       {/* MAIN - Conteúdo principal                 */}
 
       <main>
