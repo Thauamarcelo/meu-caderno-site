@@ -75,7 +75,7 @@ const Movies = () => {
                 setMovies(moviesWithReviews);
                 setLoading(false);
             } catch (err) {
-                setError('Erro ao carregar filmes');
+                setError('Erro ao carregar filmes');  // ← Muito genérico!
                 setLoading(false);
             }
         };
@@ -96,7 +96,7 @@ const Movies = () => {
     if (loading) {
         return (
             <>
-                <Header/>
+                <Header />
                 <main>
                     <section className="movies-section">
                         <h1 className="movies-title">「 Filmes 」</h1>
@@ -111,7 +111,7 @@ const Movies = () => {
     if (error) {
         return (
             <>
-                <Header/>
+                <Header />
                 <main>
                     <section className="movies-section">
                         <h1 className="movies-title">「 Filmes 」</h1>
@@ -125,7 +125,7 @@ const Movies = () => {
     return (
         <>
             {/* HEADER */}
-            <Header/>
+            <Header />
 
             {/* CONTEÚDO PRINCIPAL */}
             <main>
