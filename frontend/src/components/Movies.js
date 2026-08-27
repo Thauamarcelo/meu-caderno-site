@@ -75,7 +75,8 @@ const Movies = () => {
                 setMovies(moviesWithReviews);
                 setLoading(false);
             } catch (err) {
-                setError('Erro ao carregar filmes');  // ← Muito genérico!
+                console.error('ERRO DETALHADO:', err);  // ← Mostra no console
+                setError(`Erro: ${err.message}`);        // ← Mostra na tela
                 setLoading(false);
             }
         };
