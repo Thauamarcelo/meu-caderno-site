@@ -1,14 +1,10 @@
 import React, { useEffect } from "react";
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './Home.css';
 import Header from './Header';
-import Footer from './Footer';
-
 const Home = () => {
 
   const navigate = useNavigate();
-  const user = JSON.parse(localStorage.getItem('user')) || {};
-
   //proteção caso nao tenha login, volta para fazer login
 
   useEffect(() => {
