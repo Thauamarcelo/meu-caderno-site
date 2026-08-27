@@ -60,7 +60,7 @@ const Movies = () => {
 
                 // Busca cada filme individualmente
                 const moviePromises = movieTitles.map(title =>
-                    axios.get(`https://www.omdbapi.com/?t=${title}&apikey=${process.env.REACT_APP_OMDB_API_KEY}`)
+                    axios.get(`https://www.omdbapi.com/?t=${title}&apikey=41752fb`)
                 );
 
                 const responses = await Promise.all(moviePromises);
