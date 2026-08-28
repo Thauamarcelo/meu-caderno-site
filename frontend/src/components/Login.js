@@ -83,6 +83,7 @@ const Login = () => {
                             onChange={handleChange}
                             required
                             placeholder='**********'
+                            autocomplete="current-password"
                         />
                     </div>
 
