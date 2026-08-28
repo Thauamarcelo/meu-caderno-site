@@ -238,3 +238,10 @@ p {
     left: 0;
 }
 
+.footer-tech {
+    text-align: center;
+    font-size: 0.8rem;
+    color: #888;
+    font-family: "Inconsolata", monospace;
+    padding: 10px;
+}
