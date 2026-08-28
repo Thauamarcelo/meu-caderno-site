@@ -26,7 +26,7 @@ const Header = () => {
                             <summary>Indicações</summary>
                             <ul className="submenu">
                                 <li><Link to="/music">Música/Albuns</Link></li>
-                                <li><Link to="./movies">Filme</Link></li>
+                                <li><Link to="/movies">Filme</Link></li>
                                 <li><Link to="/series">Série</Link></li>
                                 <li><Link to="/books">livro</Link></li>
                             </ul>
