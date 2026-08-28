@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Header from './Header';
 import Loading from './Loading';
-import Error from './Error';
 import './Home.css';
 import './Music.css';
 
@@ -86,8 +85,8 @@ Escutar o album por completo é uma experiencia tanta quanto incomum com outras 
                     return {
                         ...localData,
                         // Usar imagem da API se existir, senão usar local
-                        artworkUrl: apiData.artworkUrl100 
-                            ? apiData.artworkUrl100.replace('100x100', '300x300') 
+                        artworkUrl: apiData.artworkUrl100
+                            ? apiData.artworkUrl100.replace('100x100', '300x300')
                             : localData.localImage,
                         releaseDate: apiData.releaseDate || 'Data não disponível',
                         genre: apiData.primaryGenreName || 'Gênero não informado',
@@ -157,17 +156,17 @@ Escutar o album por completo é uma experiencia tanta quanto incomum com outras 
 
                 <section className="musica">
                     {albums.map((album, index) => (
-                        <div 
-                            key={album.id} 
+                        <div
+                            key={album.id}
                             className={`card ${activeCard === index ? 'active' : ''}`}
                             onClick={() => toggleCard(index)}
                         >
-                            <img 
-                                src={album.artworkUrl} 
-                                alt={album.title} 
+                            <img
+                                src={album.artworkUrl}
+                                alt={album.title}
                             />
                             <h1>{album.title}</h1>
-                            
+
                             {/* Metadados da API */}
                             <div className="album-metadata">
                                 <p><strong>Artista:</strong> {album.artist}</p>
@@ -175,7 +174,7 @@ Escutar o album por completo é uma experiencia tanta quanto incomum com outras 
                                 <p><strong>Lançamento:</strong> {new Date(album.releaseDate).toLocaleDateString('pt-BR')}</p>
                                 <p><strong>Faixas:</strong> {album.trackCount}</p>
                             </div>
-                            
+
                             {/* Sua resenha completa */}
                             <div className="info">
                                 <h3>O que eu achei:</h3>
