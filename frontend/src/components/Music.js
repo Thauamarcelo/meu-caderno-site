@@ -1,13 +1,13 @@
-import React, { useEffect } from 'react';
-import { useNavigate} from 'react-router-dom';
-import './Home.css'; 
-import './Music.css'; 
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import './Home.css';
+import './Music.css';
 import Header from './Header';
 
 const Music = () => {
     const navigate = useNavigate();
 
-    const [activeCard, setActiveCard] = React.useState(null);
+    const [activeCard, setActiveCard] = useState(null);  // ← Direto!
 
     useEffect(() => {
         const token = localStorage.getItem('token');
