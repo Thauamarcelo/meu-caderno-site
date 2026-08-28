@@ -25,15 +25,17 @@ const Music = () => {
         }
     }, [navigate]);
 
-    // SEUS ÁLBUNS (dados fixos + resenhas)
-    const myAlbumsData = [
-        {
-            id: 0,
-            title: 'ADDISON',
-            artist: 'Addison Rae',
-            searchTerm: 'Addison Rae Addison',  // Termo para buscar na API
-            localImage: '/img/addison.png',      // Imagem local (fallback)
-            myReview: `Como podemos falar da filha legítima de Britney, Lana e da própria Madonna? Calma, ainda não dá — o mundo ainda está conhecendo Addison Rae, diretamente dos escombros da Hype House, é a estrela em ascensão. Addison Rae apareceu na internet por volta de 2019, onde gravava vídeos de dancinhas virais que, para a época, eram "divertidas".
+    // Buscar metadados da iTunes API
+    useEffect(() => {
+        // ✅ SEUS ÁLBUNS AGORA ESTÃO AQUI DENTRO
+        const myAlbumsData = [
+            {
+                id: 0,
+                title: 'ADDISON',
+                artist: 'Addison Rae',
+                searchTerm: 'Addison Rae Addison',
+                localImage: '/img/addison.png',
+                myReview: `Como podemos falar da filha legítima de Britney, Lana e da própria Madonna? Calma, ainda não dá — o mundo ainda está conhecendo Addison Rae, diretamente dos escombros da Hype House, é a estrela em ascensão. Addison Rae apareceu na internet por volta de 2019, onde gravava vídeos de dancinhas virais que, para a época, eram "divertidas".
 
 Rae se lançou ao mundo pop em 2021 com o lançamento de "Obsessed", que faria parte do seu primeiro álbum de estreia, mas que futuramente foi descartado por conta de vários vazamentos. Porém, entretanto e todavia, ela lançou o EP nomeado como "AR", que particularmente não me agrada muito, com exceção de "I Got It Bad", que me lembra bastante Britney em seu início.
 
@@ -44,27 +46,25 @@ Com o lançamento de "Diet Pepsi", Rae nos remete ao início de Lana Del Rey, ma
 "High Fashion" se destaca para mim por ser uma música com um aspecto diferente das demais cantoras novatas. O trabalho de Addison se destaca por ser fora da curva. A bateria eletrônica, sintetizadores, baixo e sua voz com um reverb bem feito nos fazem sentir como se estivéssemos sendo introduzidos ao seu "High Fashion". Agradeço a Elvira Anderfjärd e Luka Kloser.
 
 Escutar o album por completo é uma experiencia tanta quanto incomum com outras cantoras ja que é calmo agitado e sexy. Escutar ela no Lollapalooz 2026 foi a minha escolha certa de se fazer, ela é um prodígio na música pop e com uma boa cordenação de carreira, pode apostar que ainda veremos muito a se falar sobre Addison Rae.`
-        },
-        {
-            id: 1,
-            title: 'VIRGIN',
-            artist: 'FKA Twigs',  // Ajuste se for outro artista
-            searchTerm: 'FKA Twigs Magdalene',  // Termo de busca
-            localImage: '/img/virgin.png',
-            myReview: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero minima accusantium expedita animi recusandae aliquam pariatur culpa, nam consequuntur totam aspernatur tempore dolor, necessitatibus, earum dolore adipisci velit in consequatur.'
-        },
-        {
-            id: 2,
-            title: 'MAGDALENE',
-            artist: 'FKA Twigs',
-            searchTerm: 'FKA Twigs Magdalene',
-            localImage: '/img/magdalene.png',
-            myReview: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero minima accusantium expedita animi recusandae aliquam pariatur culpa, nam consequuntur totam aspernatur tempore dolor, necessitatibus, earum dolore adipisci velit in consequatur.'
-        }
-    ];
+            },
+            {
+                id: 1,
+                title: 'VIRGIN',
+                artist: 'FKA Twigs',
+                searchTerm: 'FKA Twigs Magdalene',
+                localImage: '/img/virgin.png',
+                myReview: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero minima accusantium expedita animi recusandae aliquam pariatur culpa, nam consequuntur totam aspernatur tempore dolor, necessitatibus, earum dolore adipisci velit in consequatur.'
+            },
+            {
+                id: 2,
+                title: 'MAGDALENE',
+                artist: 'FKA Twigs',
+                searchTerm: 'FKA Twigs Magdalene',
+                localImage: '/img/magdalene.png',
+                myReview: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero minima accusantium expedita animi recusandae aliquam pariatur culpa, nam consequuntur totam aspernatur tempore dolor, necessitatibus, earum dolore adipisci velit in consequatur.'
+            }
+        ];
 
-    // Buscar metadados da iTunes API
-    useEffect(() => {
         const fetchAlbums = async () => {
             try {
                 setLoading(true);
@@ -84,14 +84,12 @@ Escutar o album por completo é uma experiencia tanta quanto incomum com outras 
 
                     return {
                         ...localData,
-                        // Usar imagem da API se existir, senão usar local
-                        artworkUrl: apiData.artworkUrl100
-                            ? apiData.artworkUrl100.replace('100x100', '300x300')
+                        artworkUrl: apiData.artworkUrl100 
+                            ? apiData.artworkUrl100.replace('100x100', '300x300') 
                             : localData.localImage,
                         releaseDate: apiData.releaseDate || 'Data não disponível',
                         genre: apiData.primaryGenreName || 'Gênero não informado',
                         trackCount: apiData.trackCount || '?',
-                        // Se a API retornar um nome diferente, preferir o seu
                         title: localData.title,
                         artist: apiData.artistName || localData.artist
                     };
@@ -101,7 +99,6 @@ Escutar o album por completo é uma experiencia tanta quanto incomum com outras 
                 setLoading(false);
             } catch (err) {
                 console.error('ERRO DETALHADO:', err);
-                // Se a API falhar, usar dados locais sem metadados
                 const fallbackAlbums = myAlbumsData.map(album => ({
                     ...album,
                     artworkUrl: album.localImage,
@@ -110,13 +107,13 @@ Escutar o album por completo é uma experiencia tanta quanto incomum com outras 
                     trackCount: '?'
                 }));
                 setAlbums(fallbackAlbums);
-                setError(`API indisponível. Mostrando dados locais.`);
+                setError('API indisponível. Mostrando dados locais.');
                 setLoading(false);
             }
         };
 
         fetchAlbums();
-    }, []);
+    }, []); // ✅ Array vazio, sem warnings!
 
     // Abrir/fechar card
     const toggleCard = (index) => {
@@ -147,7 +144,6 @@ Escutar o album por completo é uma experiencia tanta quanto incomum com outras 
             <Header />
 
             <main>
-                {/* Se houver erro da API, mostra um aviso sutil */}
                 {error && (
                     <div className="api-warning">
                         {error}
@@ -156,26 +152,24 @@ Escutar o album por completo é uma experiencia tanta quanto incomum com outras 
 
                 <section className="musica">
                     {albums.map((album, index) => (
-                        <div
-                            key={album.id}
+                        <div 
+                            key={album.id} 
                             className={`card ${activeCard === index ? 'active' : ''}`}
                             onClick={() => toggleCard(index)}
                         >
-                            <img
-                                src={album.artworkUrl}
-                                alt={album.title}
+                            <img 
+                                src={album.artworkUrl} 
+                                alt={album.title} 
                             />
                             <h1>{album.title}</h1>
-
-                            {/* Metadados da API */}
+                            
                             <div className="album-metadata">
                                 <p><strong>Artista:</strong> {album.artist}</p>
                                 <p><strong>Gênero:</strong> {album.genre}</p>
                                 <p><strong>Lançamento:</strong> {new Date(album.releaseDate).toLocaleDateString('pt-BR')}</p>
                                 <p><strong>Faixas:</strong> {album.trackCount}</p>
                             </div>
-
-                            {/* Sua resenha completa */}
+                            
                             <div className="info">
                                 <h3>O que eu achei:</h3>
                                 <p>{album.myReview}</p>
