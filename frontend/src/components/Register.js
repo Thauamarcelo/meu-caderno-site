@@ -153,6 +153,7 @@ const Register = () => {
                             onChange={handleChange}
                             required
                             placeholder="**********"
+                            autocomplete="new-password"
                         />
                         {/* Validação em tempo real */}
                         <span className={`validation-message ${passwordValid ? 'valid' : 'invalid'}`}>

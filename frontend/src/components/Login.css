@@ -112,3 +112,21 @@
 .validation-message.invalid {
     color: #c62828;  /* Vermelho */
 }
+
+/* ========================================== */
+/* VALIDAÇÃO EM TEMPO REAL                    */
+/* ========================================== */
+
+.validation-message {
+    font-size: 0.8rem;
+    font-family: "Inconsolata", monospace;
+    margin-top: 3px;
+}
+
+.validation-message.valid {
+    color: #2e7d32;  /* Verde */
+}
+
+.validation-message.invalid {
+    color: #c62828;  /* Vermelho */
+}
