@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 // Componente reutilizável de card de álbum
 // Receber props: title, image, alt, review, isActive, onToggle
