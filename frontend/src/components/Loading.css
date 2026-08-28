@@ -1,0 +1,32 @@
+/* Container do loading */
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+/* Círculo girando */
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #e0e0e0;      /* Cinza claro (parte de trás) */
+    border-top: 5px solid #000000;   /* Preto (parte da frente) */
+    border-radius: 50%;              /* Formato circular */
+    animation: spin 0.8s linear infinite;
+}
+
+/* Animação de rotação */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Texto abaixo do spinner */
+.loading-text {
+    margin-top: 15px;
+    font-family: "Inconsolata", monospace;
+    color: #555;
+    font-size: 1rem;
+}

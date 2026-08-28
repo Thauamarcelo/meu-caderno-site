@@ -1,0 +1,38 @@
+.error-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    background: #fff5f5;
+    border: 1px solid #f5c6c6;
+    border-radius: 5px;
+    margin: 20px 0;
+}
+
+.error-icon {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.error-text {
+    color: #c62828;
+    font-family: "Inconsolata", monospace;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.retry-btn {
+    margin-top: 15px;
+    padding: 8px 20px;
+    background: #c62828;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-family: "Inconsolata", monospace;
+    font-size: 0.9rem;
+}
+
+.retry-btn:hover {
+    opacity: 0.8;
+}

@@ -4,6 +4,8 @@ import axios from 'axios';
 import Header from './Header';
 import './Home.css';
 import './Movies.css';
+import Loading from './Loading';
+import Error from './Error';
 
 const Movies = () => {
     const navigate = useNavigate();
@@ -101,7 +103,7 @@ const Movies = () => {
                 <main>
                     <section className="movies-section">
                         <h1 className="movies-title">「 Filmes 」</h1>
-                        <p>Carregando filmes...</p>
+                        <Loading message="Buscando filmes na OMDB..." />  {/* ← Componente pra ficar mais llindinho */}
                     </section>
                 </main>
             </>
@@ -116,7 +118,7 @@ const Movies = () => {
                 <main>
                     <section className="movies-section">
                         <h1 className="movies-title">「 Filmes 」</h1>
-                        <p className="error-message">{error}</p>
+                        <Error message={error} />  {/* ← USA O COMPONENTE */}
                     </section>
                 </main>
             </>
