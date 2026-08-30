@@ -10,6 +10,9 @@ import Books from './components/Books';
 import CodeMusic from './components/CodeMusic';
 import Blender from './components/Blender';
 import Secret from './components/Secret';
+import ForgotPassword from './components/ForgotPassword';
+import ResetPassword from './components/ResetPassword';
+
 
 function App() {
 
@@ -37,6 +40,8 @@ function App() {
         <Route path="/codemusic" element={<CodeMusic />} />
         <Route path="/blender" element={<Blender />} />
         <Route path="/secret" element={<Secret />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/reset-password/:token" element={<ResetPassword />} />
       </Routes>
     </BrowserRouter>
   );

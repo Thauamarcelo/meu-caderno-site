@@ -130,3 +130,28 @@
 .validation-message.invalid {
     color: #c62828;  /* Vermelho */
 }
+/* Mensagem de sucesso */
+.success-message {
+    background: #e8f5e9;
+    color: #2e7d32;
+    padding: 10px 15px;
+    border-left: 4px solid #2e7d32;
+    margin-bottom: 15px;
+    font-family: "Inconsolata", monospace;
+    font-size: 0.9rem;
+}
+
+/* Caixa do link de reset */
+.reset-link-box {
+    background: #fff8e1;
+    padding: 15px;
+    border: 1px dashed #ffb300;
+    margin-bottom: 15px;
+    font-family: "Inconsolata", monospace;
+}
+
+.reset-link-box a {
+    color: #000;
+    font-weight: bold;
+    text-decoration: underline;
+}
