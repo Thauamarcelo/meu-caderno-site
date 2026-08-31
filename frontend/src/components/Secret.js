@@ -1,5 +1,6 @@
 import React from 'react';
 import Placeholder from './Placeholder';
+import Footer from './Footer';
 
 const Secret = () => {
     return (
@@ -9,5 +10,7 @@ const Secret = () => {
         />
     );
 };
+
+<Footer/>
 
 export default Secret;

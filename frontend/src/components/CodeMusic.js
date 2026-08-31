@@ -1,5 +1,7 @@
 import React from 'react';
 import Placeholder from './Placeholder';
+import Footer from './Footer';
+
 
 const CodeMusic = () => {
     return (
@@ -9,5 +11,7 @@ const CodeMusic = () => {
         />
     );
 };
+
+<Footer/>
 
 export default CodeMusic;

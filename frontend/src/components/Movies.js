@@ -6,6 +6,7 @@ import './Home.css';
 import './Movies.css';
 import Loading from './Loading';
 import Error from './Error';
+import Footer from './Footer';
 
 const Movies = () => {
     const navigate = useNavigate();
@@ -185,11 +186,7 @@ const Movies = () => {
                 </section>
             </main>
 
-            <footer>
-                <nav>
-                    <button className="link-button">Política de privacidade</button>
-                </nav>
-            </footer>
+            <Footer/>
         </>
     );
 };

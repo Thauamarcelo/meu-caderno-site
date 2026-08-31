@@ -4,6 +4,7 @@ import Header from './Header';
 import AlbumCard from './AlbumCard';
 import './Home.css';
 import './Music.css';
+import Footer from './Footer';
 
 const Music = () => {
     const navigate = useNavigate();
@@ -76,11 +77,7 @@ Escutar o album por completo é uma experiencia tanta quanto incomum com outras 
                 </section>
             </main>
 
-            <footer>
-                <nav>
-                    <button className="link-button">Política de privacidade</button>
-                </nav>
-            </footer>
+            <Footer/>
         </>
     );
 };
