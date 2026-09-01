@@ -238,10 +238,23 @@ p {
     left: 0;
 }
 
-.footer-tech {
+/* ========================================== */
+/* FOOTER PADRONIZADO                        */
+/* ========================================== */
+
+.main-footer {
+    margin-top: 50px;
+    padding: 20px 5%;
+    border-top: 1px solid #ccc;
     text-align: center;
+}
+
+.main-footer nav {
+    margin-bottom: 10px;
+}
+
+.footer-tech {
     font-size: 0.8rem;
     color: #888;
     font-family: "Inconsolata", monospace;
-    padding: 10px;
 }

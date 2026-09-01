@@ -5,6 +5,8 @@ import Header from './Header';
 import Loading from './Loading';
 import './Home.css';
 import './Music.css';
+import Footer from './Footer';
+
 
 const Music = () => {
     const navigate = useNavigate();
@@ -200,11 +202,8 @@ const Music = () => {
                 </section>
             </main>
 
-            <footer>
-                <nav>
-                    <button className="link-button">Política de privacidade</button>
-                </nav>
-            </footer>
+            <Footer />
+
         </>
     );
 };

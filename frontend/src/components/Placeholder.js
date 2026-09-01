@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import Header from './Header';  // ← Usa o componente Header pronto!
 import './Home.css';
+import Footer from './Footer';
 
 const Placeholder = ({ title, description }) => {
     const navigate = useNavigate();
@@ -31,11 +32,7 @@ const Placeholder = ({ title, description }) => {
             </main>
 
             {/* Footer */}
-            <footer>
-                <nav>
-                    <button className="link-button">Política de privacidade</button>
-                </nav>
-            </footer>
+            <Footer />
         </>
     );
 };

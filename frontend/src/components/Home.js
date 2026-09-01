@@ -2,6 +2,9 @@ import React, { useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import './Home.css';
 import Header from './Header';
+import Footer from './Footer';
+
+
 const Home = () => {
 
   const navigate = useNavigate();
@@ -103,11 +106,7 @@ const Home = () => {
         </section>
       </main>
 
-      <footer>
-        <nav>
-          <a href="#inicio">Política de privacidade</a>
-        </nav>
-      </footer>
+      <Footer />
 
     </>
   );
