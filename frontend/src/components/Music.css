@@ -1,33 +1,166 @@
-/* Página de Música/Álbuns */
-.musica {
+/* ========================================== */
+/* PÁGINA DE RECOMENDAÇÃO DE MÚSICA          */
+/* ========================================== */
+
+.recommend-main-section {
+    padding-top: 40px;
+    max-width: 1000px;
+}
+
+.recommend-main-title {
+    font-size: 1.4rem;
+    font-family: "Inconsolata", monospace;
+    margin-bottom: 30px;
+    background-color: black;
+    color: white;
+    padding: 5px 15px;
+    display: inline-block;
+}
+
+/* Layout em 2 colunas */
+.recommend-layout {
     display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    padding-top: 20px;
+    gap: 30px;
+    align-items: flex-start;
 }
 
-.card {
-    width: 250px;
-    cursor: pointer;
-    position: relative;
+/* Lado esquerdo: busca */
+.recommend-left {
+    flex: 1;
 }
 
-.card img {
-    width: 100%;
-    display: block;
-    transform: scale(1);
+/* Lado direito: carta */
+.recommend-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
-.info {
-    display: none;
-    margin-top: 10px;
-    width: 280px;
-    max-height: 200px;
+/* Barra de busca */
+.search-box {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.recommend-input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    font-family: "Inconsolata", monospace;
+    font-size: 0.9rem;
+}
+
+/* Resultados da busca */
+.search-results {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    max-height: 300px;
     overflow-y: auto;
-    background: rgba(61, 61, 61, 0.315);
-    padding: 20px;
 }
 
-.card.active .info {
-    display: block;
+.song-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px;
+    cursor: pointer;
+    transition: background 0.2s;
+    border-radius: 3px;
+}
+
+.song-item:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.song-item.selected {
+    background: rgba(0, 0, 0, 0.1);
+    border-left: 3px solid black;
+}
+
+.song-item img {
+    border-radius: 3px;
+}
+
+.song-name {
+    font-size: 0.85rem;
+    font-weight: bold;
+    font-family: "Inconsolata", monospace;
+    margin-bottom: 2px;
+}
+
+.song-artist {
+    font-size: 0.75rem;
+    color: #666;
+    font-family: "Inconsolata", monospace;
+}
+
+/* Música selecionada */
+.selected-song-display {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px;
+    background: rgba(0, 0, 0, 0.03);
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.selected-song-display img {
+    border-radius: 5px;
+}
+
+.selected-song-name {
+    font-weight: bold;
+    font-family: "Inconsolata", monospace;
+    font-size: 1rem;
+}
+
+.selected-song-artist {
+    color: #666;
+    font-family: "Inconsolata", monospace;
+    font-size: 0.85rem;
+}
+
+/* Textarea da carta */
+.recommend-textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    font-family: "Inconsolata", monospace;
+    font-size: 0.9rem;
+    resize: vertical;
+}
+
+/* Placeholder */
+.placeholder-text {
+    color: #888;
+    font-family: "Inconsolata", monospace;
+    font-size: 0.9rem;
+    font-style: italic;
+}
+
+/* Seção de recomendar álbum (futuro) */
+.album-recommend-section {
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 2px dashed #ccc;
+}
+
+.recommend-title {
+    font-size: 1.1rem;
+    font-family: "Inconsolata", monospace;
+    margin-bottom: 15px;
+}
+
+/* Mensagem de sucesso */
+.success-message {
+    background: #e8f5e9;
+    color: #2e7d32;
+    padding: 15px;
+    border-left: 4px solid #2e7d32;
+    margin-bottom: 15px;
+    font-family: "Inconsolata", monospace;
 }

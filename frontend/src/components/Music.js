@@ -1,31 +1,88 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import Header from './Header';
-import AlbumCard from './AlbumCard';
+import Loading from './Loading';
 import './Home.css';
 import './Music.css';
-import Footer from './Footer';
 
 const Music = () => {
     const navigate = useNavigate();
 
-    // Qual card está aberto (0, 1, 2, ou null)
-    const [activeCard, setActiveCard] = useState(null);
+    // Estados para recomendação
+    const [searchTerm, setSearchTerm] = useState('');
+    const [searchResults, setSearchResults] = useState([]);
+    const [selectedSong, setSelectedSong] = useState(null);
+    const [recommendMessage, setRecommendMessage] = useState('');
+    const [senderEmail, setSenderEmail] = useState('');
+    const [searchLoading, setSearchLoading] = useState(false);
+    const [sentSuccess, setSentSuccess] = useState(false);
 
+    const [pageLoading, setPageLoading] = useState(true);
     // Proteção da rota
     useEffect(() => {
         const token = localStorage.getItem('token');
         if (!token) {
             navigate('/login');
         }
+
+        const timer = setTimeout(() => {
+            setPageLoading(false);
+        }, 1000);
+        
     }, [navigate]);
 
-    // Função para abrir/fechar card
-    const toggleCard = (index) => {
-        if (activeCard === index) {
-            setActiveCard(null); // Fecha se já estiver aberto
-        } else {
-            setActiveCard(index); // Abre o card clicado
+    // Função para buscar música na iTunes API
+    const searchMusic = async () => {
+        if (!searchTerm.trim()) return;
+        
+        setSearchLoading(true);
+        try {
+            const response = await axios.get(
+                `https://itunes.apple.com/search?term=${encodeURIComponent(searchTerm)}&entity=song&limit=8`
+            );
+            setSearchResults(response.data.results);
+        } catch (err) {
+            console.error('Erro na busca:', err);
+        } finally {
+            setSearchLoading(false);
+        }
+    };
+
+    // Selecionar música
+    const selectSong = (song) => {
+        setSelectedSong(song);
+    };
+
+    // Enviar recomendação
+    const sendRecommendation = async () => {
+        if (!selectedSong || !recommendMessage) return;
+
+        setSearchLoading(true);
+        try {
+            await axios.post('https://formspree.io/f/mwlkvlvb', {
+                songName: selectedSong.trackName,
+                artistName: selectedSong.artistName,
+                albumName: selectedSong.collectionName || 'N/A',
+                message: recommendMessage,
+                senderEmail: senderEmail || 'Anônimo'
+            });
+            
+            setSentSuccess(true);
+            // Resetar após 3 segundos
+            setTimeout(() => {
+                setSentSuccess(false);
+                setSelectedSong(null);
+                setRecommendMessage('');
+                setSenderEmail('');
+                setSearchResults([]);
+                setSearchTerm('');
+            }, 3000);
+        } catch (err) {
+            console.error('Erro ao enviar:', err);
+            alert('Erro ao enviar recomendação. Tente novamente.');
+        } finally {
+            setSearchLoading(false);
         }
     };
 
@@ -34,50 +91,125 @@ const Music = () => {
             <Header />
 
             <main>
-                <section className="musica">
-                    {/* Card 1: Addison */}
-                    <AlbumCard
-                        title="ADDISON"
-                        image="/img/addison.png"
-                        alt="cd-addison"
-                        isActive={activeCard === 0}
-                        onToggle={() => toggleCard(0)}
-                        review={`Como podemos falar da filha legítima de Britney, Lana e da própria Madonna? Calma, ainda não dá — o mundo ainda está conhecendo Addison Rae, diretamente dos escombros da Hype House, é a estrela em ascensão. Addison Rae apareceu na internet por volta de 2019, onde gravava vídeos de dancinhas virais que, para a época, eram "divertidas".
+                {/* ========================================== */}
+                {/* TÍTULO PRINCIPAL                          */}
+                {/* ========================================== */}
+                <section className="recommend-main-section">
+                    <h1 className="recommend-main-title">「 Recomende uma Música 」</h1>
 
-Rae se lançou ao mundo pop em 2021 com o lançamento de "Obsessed", que faria parte do seu primeiro álbum de estreia, mas que futuramente foi descartado por conta de vários vazamentos. Porém, entretanto e todavia, ela lançou o EP nomeado como "AR", que particularmente não me agrada muito, com exceção de "I Got It Bad", que me lembra bastante Britney em seu início.
+                    {sentSuccess ? (
+                        <div className="success-message">
+                            Grato! Sua recomendação foi enviada!
+                        </div>
+                    ) : (
+                        <div className="recommend-layout">
+                            {/* ========================================== */}
+                            {/* LADO ESQUERDO: BUSCA                     */}
+                            {/* ========================================== */}
+                            <div className="recommend-left">
+                                <div className="search-box">
+                                    <input
+                                        className="recommend-input"
+                                        placeholder="Pesquise uma música ou artista..."
+                                        value={searchTerm}
+                                        onChange={(e) => setSearchTerm(e.target.value)}
+                                        onKeyPress={(e) => e.key === 'Enter' && searchMusic()}
+                                    />
+                                    <button className="login-btn" onClick={searchMusic}>
+                                        Buscar
+                                    </button>
+                                </div>
 
-Futuramente, Rae lançaria singles para o seu álbum de estreia, o famoso "Addison". Com bastante cuidado, ela soube escolher sabiamente os singles para introduzir o público ao seu futuro álbum debut, quando muitos ainda tinham dúvidas do que seria apresentado. Com "Diet Pepsi", ela nos mostrou os elementos que seriam sua inspiração para o álbum, e a expectativa poderia, no caso, ser alta.
+                                {searchLoading && <Loading message="Buscando músicas..." />}
 
-Com o lançamento de "Diet Pepsi", Rae nos remete ao início de Lana Del Rey, mas com seu jeito caloroso, fazendo até quem odeia o calor se sentir pertencente a ele. Após um tempo, ela nos presenteia com a famosa "Aquamarine", que mais tarde ganharia um feat com a incrível produtora Arca. "Aquamarine" nos mergulha em um mar logo após uma noite tão viva, como se fosse para nos purificar. E não posso deixar de citar os singles "Headphone On", que foi para pessoas performáticas mas que entendem que não são apenas um fone, e a minha favorita do álbum, "High Fashion", sobre a qual falarei mais no próximo parágrafo.
+                                <div className="search-results">
+                                    {searchResults.map((song) => (
+                                        <div 
+                                            key={song.trackId} 
+                                            className={`song-item ${selectedSong?.trackId === song.trackId ? 'selected' : ''}`}
+                                            onClick={() => selectSong(song)}
+                                        >
+                                            <img 
+                                                src={song.artworkUrl100} 
+                                                alt={song.trackName} 
+                                                style={{ width: '40px', height: '40px' }}
+                                            />
+                                            <div>
+                                                <p className="song-name">{song.trackName}</p>
+                                                <p className="song-artist">{song.artistName}</p>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
 
-"High Fashion" se destaca para mim por ser uma música com um aspecto diferente das demais cantoras novatas. O trabalho de Addison se destaca por ser fora da curva. A bateria eletrônica, sintetizadores, baixo e sua voz com um reverb bem feito nos fazem sentir como se estivéssemos sendo introduzidos ao seu "High Fashion". Agradeço a Elvira Anderfjärd e Luka Kloser.
+                            {/* ========================================== */}
+                            {/* LADO DIREITO: CARTA                      */}
+                            {/* ========================================== */}
+                            <div className="recommend-right">
+                                {selectedSong ? (
+                                    <div className="selected-song-display">
+                                        <img 
+                                            src={selectedSong.artworkUrl100} 
+                                            alt={selectedSong.trackName}
+                                            style={{ width: '80px', height: '80px' }}
+                                        />
+                                        <div>
+                                            <p className="selected-song-name">{selectedSong.trackName}</p>
+                                            <p className="selected-song-artist">{selectedSong.artistName}</p>
+                                        </div>
+                                    </div>
+                                ) : (
+                                    <p className="placeholder-text">
+                                        ← Pesquise e selecione uma música para recomendar
+                                    </p>
+                                )}
 
-Escutar o album por completo é uma experiencia tanta quanto incomum com outras cantoras ja que é calmo agitado e sexy. Escutar ela no Lollapalooz 2026 foi a minha escolha certa de se fazer, ela é um prodígio na música pop e com uma boa cordenação de carreira, pode apostar que ainda veremos muito a se falar sobre Addison Rae.`}
-                    />
+                                <textarea
+                                    className="recommend-textarea"
+                                    placeholder="Escreva sua cartinha sobre essa música..."
+                                    value={recommendMessage}
+                                    onChange={(e) => setRecommendMessage(e.target.value)}
+                                    rows="5"
+                                />
+                                
+                                <input
+                                    className="recommend-input"
+                                    type="email"
+                                    placeholder="Seu email (opcional)"
+                                    value={senderEmail}
+                                    onChange={(e) => setSenderEmail(e.target.value)}
+                                />
+                                
+                                <button 
+                                    className="login-btn" 
+                                    onClick={sendRecommendation}
+                                    disabled={searchLoading || !recommendMessage || !selectedSong}
+                                >
+                                    Enviar
+                                </button>
+                            </div>
+                        </div>
+                    )}
+                </section>
 
-                    {/* Card 2: Virgin */}
-                    <AlbumCard
-                        title="VIRGIN"
-                        image="/img/virgin.png"
-                        alt="virgin"
-                        isActive={activeCard === 1}
-                        onToggle={() => toggleCard(1)}
-                        review="Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero minima accusantium expedita animi recusandae aliquam pariatur culpa, nam consequuntur totam aspernatur tempore dolor, necessitatibus, earum dolore adipisci velit in consequatur."
-                    />
-
-                    {/* Card 3: Magdalene */}
-                    <AlbumCard
-                        title="MAGDALENE"
-                        image="/img/magdalene.png"
-                        alt="magdalene"
-                        isActive={activeCard === 2}
-                        onToggle={() => toggleCard(2)}
-                        review="Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero minima accusantium expedita animi recusandae aliquam pariatur culpa, nam consequuntur totam aspernatur tempore dolor, necessitatibus, earum dolore adipisci velit in consequatur."
-                    />
+                {/* ========================================== */}
+                {/* SEÇÃO FUTURA: RECOMENDAR ÁLBUM           */}
+                {/* ========================================== */}
+                <section className="album-recommend-section">
+                    <h2 className="recommend-title">「 Recomendar Álbum 」</h2>
+                    <p className="placeholder-text">
+                        Em breve, você poderá recomendar álbuns completos.
+                    </p>
+                    {/* Futuro componente AlbumRecommend vai aqui */}
                 </section>
             </main>
 
-            <Footer/>
+            <footer>
+                <nav>
+                    <button className="link-button">Política de privacidade</button>
+                </nav>
+            </footer>
         </>
     );
 };
