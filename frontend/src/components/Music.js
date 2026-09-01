@@ -18,7 +18,6 @@ const Music = () => {
     const [searchLoading, setSearchLoading] = useState(false);
     const [sentSuccess, setSentSuccess] = useState(false);
 
-    const [pageLoading, setPageLoading] = useState(true);
     // Proteção da rota
     useEffect(() => {
         const token = localStorage.getItem('token');
@@ -26,10 +25,6 @@ const Music = () => {
             navigate('/login');
         }
 
-        const timer = setTimeout(() => {
-            setPageLoading(false);
-        }, 1000);
-        
     }, [navigate]);
 
     // Função para buscar música na iTunes API
